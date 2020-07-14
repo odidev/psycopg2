@@ -1,17 +1,76 @@
 # Travis CI configuration file for psycopg2
 
 language: python
-
 matrix:
   include:
     - python: 2.7
-    - python: 3.8
-    - python: 3.7
-    - python: 3.6
-    - python: 3.5
     - python: 3.4
-
+    - python: 3.8
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
+    - python: 3.7
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
+    - python: 3.6
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
+    - python: 3.5
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
+    - dist: bionic
+      arch: arm64
+      python: 3.8
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
+    - dist: bionic
+      arch: arm64
+      python: 3.7
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
+    - dist: bionic
+      arch: arm64
+      python: 3.6
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
+    - dist: bionic
+      arch: arm64
+      python: 3.5
+      env:
+        - export DONT_TEST_PRESENT=0
+        - export TEST_FUTURE=0
+        - export TEST_VERBOSE=0
+        - export PSYCOPG2_TEST_FAST=0
+        - export TEST_PAST=0
 install:
+  - sudo apt-get install -y bc
   - pip install -U pip setuptools wheel
   - pip install .
   - rm -rf psycopg2.egg-info
