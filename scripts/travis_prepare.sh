@@ -114,17 +114,19 @@ create () {
 
 # Would give a permission denied error in the travis build dir
 cd /
-
-# Postgres versions supported by Travis CI
-if (( ! "$DONT_TEST_PRESENT" )); then
-    create 12
-    create 11
-    create 10
-    create 9.6
-    create 9.5
-    create 9.4
+if (( "$TEST_PRESENT" )); then
+    if [[ ${TRAVIS_CPU_ARCH} == "arm64" ]]; then
+    # Postgres versions supported by ARM64
+        create 10
+    else
+        create 12
+        create 11
+        create 10
+        create 9.6
+        create 9.5
+        create 9.4
+    fi
 fi
-
 # Unsupported postgres versions that we still support
 # Images built by https://github.com/psycopg/psycopg2-wheels/tree/build-dinosaurs
 if (( "$TEST_PAST" )); then
